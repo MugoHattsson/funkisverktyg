@@ -27,7 +27,7 @@ public class PdfMakerApp extends JFrame {
         pathField.setEditable(false);
         add(pathField);
 
-        generateButton = new JButton("click");
+        generateButton = new JButton("Skapa PDF");
         generateButton.setEnabled(false);
 
         add(generateButton);
@@ -37,7 +37,6 @@ public class PdfMakerApp extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
 
     private void openDirectoryDialog() {
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
@@ -58,5 +57,5 @@ public class PdfMakerApp extends JFrame {
         b.add(Box.createHorizontalGlue());
         return b;
     }
-        
+
 }
