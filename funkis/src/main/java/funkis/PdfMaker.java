@@ -21,13 +21,15 @@ import com.itextpdf.layout.element.Table;
 
 public final class PdfMaker {
 
+    static final String pdfName = "output.pdf";
+
     public static void createPdf(final File dir) {
         final String path = dir.getPath() + "/";
 
         // Creating a PdfWriter
         PdfWriter writer;
         try {
-            writer = new PdfWriter(new File(path + "output.pdf"));
+            writer = new PdfWriter(new File(path + pdfName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return;
@@ -62,7 +64,7 @@ public final class PdfMaker {
             }
         };
 
-        System.out.println("\nSkapar PDF");
+        System.out.print("\nSkapar PDF");
 
         if (dir.isDirectory()) {
             LinkedList<File> files = new LinkedList<>(Arrays.asList(dir.listFiles(IMAGE_FILTER)));
@@ -105,7 +107,7 @@ public final class PdfMaker {
         // Closing the document
         document.close();
 
-        System.out.println("\nPDF skapad");
+        System.out.println("\nPDF skapad: " + path + pdfName);
     }
 
     // Takes a filename and formats it so to be nicely included in the final pdf.

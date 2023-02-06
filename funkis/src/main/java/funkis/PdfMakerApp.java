@@ -16,14 +16,14 @@ public class PdfMakerApp extends JFrame {
     public PdfMakerApp() {
         setTitle("PDF-generator");
 
-        directoryButton = new JButton("Öppna mapp");
+        directoryButton = new JButton("Välj mapp");
         directoryButton.addActionListener((e) -> openDirectoryDialog());
         add(directoryButton);
 
-        pathLabel = new JLabel("Angiven plats för bilder:");
+        pathLabel = new JLabel("Filsökväg till vald mapp:");
         add(leftAlign(pathLabel));
 
-        pathField = new JTextArea("sökväg/till/bildmapp");
+        pathField = new JTextArea("vänligen välj mapp");
         pathField.setEditable(false);
         add(pathField);
 
@@ -42,13 +42,13 @@ public class PdfMakerApp extends JFrame {
         JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int state = fc.showOpenDialog(this);
-        System.out.println("State: " + state);
         if (state == JFileChooser.APPROVE_OPTION) {
             dir = fc.getSelectedFile();
             generateButton.addActionListener(e -> PdfMaker.createPdf(dir));
             generateButton.setEnabled(true);
             pathField.setText(dir.getPath());
         }
+        System.out.println("Mapp vald: " + dir.getPath());
     }
 
     private Component leftAlign(Component comp) {
@@ -57,5 +57,4 @@ public class PdfMakerApp extends JFrame {
         b.add(Box.createHorizontalGlue());
         return b;
     }
-
 }
